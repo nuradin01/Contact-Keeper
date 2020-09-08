@@ -15,13 +15,13 @@ app.use('/api/users', require('./routes/users'));
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/contacts', require('./routes/contacts'));
 
-// Server static assets in production
-if (process.env.MODE_ENV === 'production') {
+// Serve static assets in production
+if (process.env.NODE_ENV === 'production') {
   // Set static folder
   app.use(express.static('client/build'));
 
   app.get('*', (req, res) =>
-    res.sendfile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
   );
 }
 
